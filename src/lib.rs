@@ -28,6 +28,8 @@ fn setup(mut commands: Commands) {
             commands.insert_resource(scheme);
         }
     }
+    #[cfg(not(windows))]
+    commands.insert_resource(DefaultScheme());
 }
 
 #[allow(unused_variables)]
