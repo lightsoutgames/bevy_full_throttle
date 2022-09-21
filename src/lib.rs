@@ -40,18 +40,18 @@ fn focus_change(
 ) {
     let config: FullThrottleConfig = config
         .map(|v| *v)
-        .unwrap_or_else(|| FullThrottleConfig::default());
+        .unwrap_or_else(FullThrottleConfig::default);
     for event in focus.iter() {
         if event.focused {
             #[cfg(windows)]
             unsafe {
-                Power::PowerSetActiveScheme(None, &GUID_MIN_POWER_SAVINGS);
+                Power::PowerSetActiveScheme(None, Some(&GUID_MIN_POWER_SAVINGS));
             }
         } else {
             #[cfg(windows)]
             if config.restore_original_scheme_on_unfocus {
                 unsafe {
-                    Power::PowerSetActiveScheme(None, &**scheme);
+                    Power::PowerSetActiveScheme(None, Some(&**scheme));
                 }
             }
         }
