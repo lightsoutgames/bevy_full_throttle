@@ -5,16 +5,12 @@ use windows::{
     Win32::System::{Power, SystemServices::GUID_MIN_POWER_SAVINGS},
 };
 
-#[derive(Clone, Copy, Default)]
-pub struct FullThrottleConfig {
-    pub restore_original_scheme_on_unfocus: bool,
-}
-
 #[cfg(windows)]
-#[derive(Deref, DerefMut)]
+#[derive(Resource, Deref, DerefMut)]
 struct DefaultScheme(GUID);
 
 #[cfg(not(windows))]
+#[derive(Resource)]
 struct DefaultScheme();
 
 #[allow(unused_mut, unused_variables)]
@@ -34,13 +30,10 @@ fn setup(mut commands: Commands) {
 
 #[allow(unused_variables)]
 fn focus_change(
-    config: Option<Res<FullThrottleConfig>>,
+    config: Res<FullThrottlePlugin>,
     mut focus: EventReader<WindowFocused>,
     scheme: Res<DefaultScheme>,
 ) {
-    let config: FullThrottleConfig = config
-        .map(|v| *v)
-        .unwrap_or_else(FullThrottleConfig::default);
     for event in focus.iter() {
         if event.focused {
             #[cfg(windows)]
@@ -58,10 +51,15 @@ fn focus_change(
     }
 }
 
-pub struct FullThrottlePlugin;
+#[derive(Resource, Clone, Copy, Default)]
+pub struct FullThrottlePlugin {
+    pub restore_original_scheme_on_unfocus: bool,
+}
 
 impl Plugin for FullThrottlePlugin {
     fn build(&self, app: &mut App) {
-        app.add_startup_system(setup).add_system(focus_change);
+        app.insert_resource(*self)
+            .add_startup_system(setup)
+            .add_system(focus_change);
     }
 }
