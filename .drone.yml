@@ -2,16 +2,11 @@ kind: pipeline
 type: docker
 name: default
 
-environment:
-  DEPENDENCIES: libudev-dev
-
 steps:
   - name: test
     image: rust:bullseye
     pull: always
     commands:
-      - apt-get update -qq
-      - apt-get install -qqy $DEPENDENCIES
       - rustup component add clippy rustfmt
       - cargo fmt --check
       - cargo test
@@ -20,8 +15,6 @@ steps:
     image: rust:bullseye
     pull: always
     commands:
-      - apt-get update -qq
-      - apt-get install -qqy $DEPENDENCIES
       - cargo publish
     when:
       ref:
