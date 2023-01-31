@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.1.1 - 2023-01-31
+
+### Miscellaneous Tasks
+
+- Bump Windows dependencies.
+
 ## Version 0.1.0 - 2022-12-20
 
 ### Miscellaneous Tasks
