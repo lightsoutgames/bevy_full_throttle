@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.1.3 - 2023-02-12
+
+### Bug Fixes
+
+- Remove Termination feature so handler only runs on ctrl-c.
+
 ## Version 0.1.2 - 2023-02-12
 
 ### Bug Fixes
