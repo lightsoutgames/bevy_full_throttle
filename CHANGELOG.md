@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.1.2 - 2023-02-12
+
+### Bug Fixes
+
+- Restore original scheme on exit.
+
 ## Version 0.1.1 - 2023-01-31
 
 ### Miscellaneous Tasks
