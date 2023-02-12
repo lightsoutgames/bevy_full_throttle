@@ -1,4 +1,4 @@
-use bevy::{prelude::*, window::WindowFocused};
+use bevy::{app::AppExit, prelude::*, window::WindowFocused};
 #[cfg(windows)]
 use windows::{
     core::GUID,
@@ -22,6 +22,11 @@ fn setup(mut commands: Commands) {
         if let Some(active) = active.as_ref() {
             let scheme = DefaultScheme(*active);
             commands.insert_resource(scheme);
+            ctrlc::set_handler(move || {
+                Power::PowerSetActiveScheme(None, Some(active));
+                std::process::exit(1);
+            })
+            .expect("Failed to set exit handler");
         }
     }
     #[cfg(not(windows))]
@@ -51,6 +56,16 @@ fn focus_change(
     }
 }
 
+#[allow(unused_variables)]
+fn exit(mut exit: EventReader<AppExit>, scheme: Res<DefaultScheme>) {
+    for event in exit.iter() {
+        #[cfg(windows)]
+        unsafe {
+            Power::PowerSetActiveScheme(None, Some(&**scheme));
+        }
+    }
+}
+
 #[derive(Resource, Clone, Copy, Default)]
 pub struct FullThrottlePlugin {
     pub restore_original_scheme_on_unfocus: bool,
@@ -60,6 +75,7 @@ impl Plugin for FullThrottlePlugin {
     fn build(&self, app: &mut App) {
         app.insert_resource(*self)
             .add_startup_system(setup)
-            .add_system(focus_change);
+            .add_system(focus_change)
+            .add_system_to_stage(CoreStage::PostUpdate, exit);
     }
 }
