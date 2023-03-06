@@ -76,6 +76,6 @@ impl Plugin for FullThrottlePlugin {
         app.insert_resource(*self)
             .add_startup_system(setup)
             .add_system(focus_change)
-            .add_system_to_stage(CoreStage::PostUpdate, exit);
+            .add_system(exit.in_base_set(CoreSet::PostUpdate));
     }
 }
