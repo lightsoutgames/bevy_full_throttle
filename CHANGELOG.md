@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.2.1 - 2023-03-28
+
+### Miscellaneous Tasks
+
+- Update `windows` to v0.46.
+
 ## Version 0.2.0 - 2023-03-06
 
 ### Miscellaneous Tasks
