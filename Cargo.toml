@@ -3,7 +3,7 @@ name = "bevy_full_throttle"
 description = "Enable CPU performance mode for Bevy games"
 license = "MIT OR Apache-2.0"
 repository = "https://labs.lightsout.games/projects/bevy_full_throttle"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
