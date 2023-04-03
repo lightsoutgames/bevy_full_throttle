@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.2.2 - 2023-04-03
+
+### Miscellaneous Tasks
+
+- Bump `windows` dependency.
+
 ## Version 0.2.1 - 2023-03-28
 
 ### Miscellaneous Tasks
