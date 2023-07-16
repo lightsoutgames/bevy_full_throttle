@@ -74,8 +74,7 @@ pub struct FullThrottlePlugin {
 impl Plugin for FullThrottlePlugin {
     fn build(&self, app: &mut App) {
         app.insert_resource(*self)
-            .add_startup_system(setup)
-            .add_system(focus_change)
-            .add_system(exit.in_base_set(CoreSet::PostUpdate));
+            .add_systems(Startup, setup)
+            .add_systems(PostUpdate, (focus_change, exit));
     }
 }
