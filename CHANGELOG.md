@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.3.1 - 2023-09-09
+
+### Bug Fixes
+
+- Panic if power scheme operations fail. This shouldn't happen, but if it does then the actual failure cases should be logged.
+
+### Miscellaneous Tasks
+
+- Bump windows dependency.
+
 ## Version 0.3.0 - 2023-07-16
 
 ### Miscellaneous Tasks
