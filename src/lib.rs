@@ -18,12 +18,13 @@ fn setup(mut commands: Commands) {
     #[cfg(windows)]
     unsafe {
         let mut active: *mut GUID = std::ptr::null_mut();
-        Power::PowerGetActiveScheme(None, &mut active);
+        Power::PowerGetActiveScheme(None, &mut active).expect("Failed to get active power scheme");
         if let Some(active) = active.as_ref() {
             let scheme = DefaultScheme(*active);
             commands.insert_resource(scheme);
             ctrlc::set_handler(move || {
-                Power::PowerSetActiveScheme(None, Some(active));
+                Power::PowerSetActiveScheme(None, Some(active))
+                    .expect("Failed to set power scheme");
                 std::process::exit(1);
             })
             .expect("Failed to set exit handler");
@@ -43,13 +44,15 @@ fn focus_change(
         if event.focused {
             #[cfg(windows)]
             unsafe {
-                Power::PowerSetActiveScheme(None, Some(&GUID_MIN_POWER_SAVINGS));
+                Power::PowerSetActiveScheme(None, Some(&GUID_MIN_POWER_SAVINGS))
+                    .expect("Failed to set power scheme");
             }
         } else {
             #[cfg(windows)]
             if config.restore_original_scheme_on_unfocus {
                 unsafe {
-                    Power::PowerSetActiveScheme(None, Some(&**scheme));
+                    Power::PowerSetActiveScheme(None, Some(&**scheme))
+                        .expect("Failed to set power scheme");
                 }
             }
         }
@@ -61,7 +64,8 @@ fn exit(mut exit: EventReader<AppExit>, scheme: Res<DefaultScheme>) {
     for event in exit.iter() {
         #[cfg(windows)]
         unsafe {
-            Power::PowerSetActiveScheme(None, Some(&**scheme));
+            Power::PowerSetActiveScheme(None, Some(&**scheme))
+                .expect("Failed to restore original power scheme");
         }
     }
 }
