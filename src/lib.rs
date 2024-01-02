@@ -40,7 +40,7 @@ fn focus_change(
     mut focus: EventReader<WindowFocused>,
     scheme: Res<DefaultScheme>,
 ) {
-    for event in focus.iter() {
+    for event in focus.read() {
         if event.focused {
             #[cfg(windows)]
             unsafe {
@@ -61,7 +61,7 @@ fn focus_change(
 
 #[allow(unused_variables)]
 fn exit(mut exit: EventReader<AppExit>, scheme: Res<DefaultScheme>) {
-    for event in exit.iter() {
+    for event in exit.read() {
         #[cfg(windows)]
         unsafe {
             Power::PowerSetActiveScheme(None, Some(&**scheme))
