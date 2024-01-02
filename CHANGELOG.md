@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.4.0 - 2024-01-02
+
+### Miscellaneous Tasks
+
+- Upgrade Bevy and windows dependencies.
+
 ## Version 0.3.1 - 2023-09-09
 
 ### Bug Fixes
