@@ -18,12 +18,15 @@ fn setup(mut commands: Commands) {
     #[cfg(windows)]
     unsafe {
         let mut active: *mut GUID = std::ptr::null_mut();
-        Power::PowerGetActiveScheme(None, &mut active).expect("Failed to get active power scheme");
+        Power::PowerGetActiveScheme(None, &mut active)
+            .ok()
+            .expect("Failed to get active power scheme");
         if let Some(active) = active.as_ref() {
             let scheme = DefaultScheme(*active);
             commands.insert_resource(scheme);
             ctrlc::set_handler(move || {
                 Power::PowerSetActiveScheme(None, Some(active))
+                    .ok()
                     .expect("Failed to set power scheme");
                 std::process::exit(1);
             })
@@ -45,6 +48,7 @@ fn focus_change(
             #[cfg(windows)]
             unsafe {
                 Power::PowerSetActiveScheme(None, Some(&GUID_MIN_POWER_SAVINGS))
+                    .ok()
                     .expect("Failed to set power scheme");
             }
         } else {
@@ -52,6 +56,7 @@ fn focus_change(
             if config.restore_original_scheme_on_unfocus {
                 unsafe {
                     Power::PowerSetActiveScheme(None, Some(&**scheme))
+                        .ok()
                         .expect("Failed to set power scheme");
                 }
             }
@@ -65,6 +70,7 @@ fn exit(mut exit: EventReader<AppExit>, scheme: Res<DefaultScheme>) {
         #[cfg(windows)]
         unsafe {
             Power::PowerSetActiveScheme(None, Some(&**scheme))
+                .ok()
                 .expect("Failed to restore original power scheme");
         }
     }
