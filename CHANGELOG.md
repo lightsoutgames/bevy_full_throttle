@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.5.0 - 2024-03-14
+
+### Miscellaneous Tasks
+
+- Upgrade Bevy to v0.13 and windows to v0.54.
+
 ## Version 0.4.0 - 2024-01-02
 
 ### Miscellaneous Tasks
