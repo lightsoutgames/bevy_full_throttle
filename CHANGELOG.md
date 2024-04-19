@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.5.1 - 2024-04-19
+
+### Miscellaneous Tasks
+
+- Update `windows` dependency.
+
 ## Version 0.5.0 - 2024-03-14
 
 ### Miscellaneous Tasks
