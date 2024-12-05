@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.7.0 - 2024-12-05
+
+### Miscellaneous Tasks
+
+- Upgrade to Bevy 0.15.
+
 ## Version 0.6.0 - 2024-07-06
 
 ### Miscellaneous Tasks
