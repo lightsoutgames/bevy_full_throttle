@@ -1,4 +1,8 @@
-use bevy::{app::AppExit, prelude::*, window::WindowFocused};
+use bevy::{
+    app::{AppExit, TerminalCtrlCHandlerPlugin},
+    prelude::*,
+    window::WindowFocused,
+};
 #[cfg(windows)]
 use windows::{
     core::GUID,
@@ -28,7 +32,7 @@ fn setup(mut commands: Commands) {
                 Power::PowerSetActiveScheme(None, Some(active))
                     .ok()
                     .expect("Failed to set power scheme");
-                std::process::exit(1);
+                TerminalCtrlCHandlerPlugin::gracefully_exit();
             })
             .expect("Failed to set exit handler");
         }

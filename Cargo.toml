@@ -9,7 +9,9 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-bevy = { version = "0.14", default-features = false }
+bevy = { version = "0.15", default-features = false, features = [
+    "bevy_window",
+] }
 ctrlc = "3"
 
 [target.'cfg(windows)'.dependencies]
