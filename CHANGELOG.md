@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.7.1 - 2024-12-05
+
+### Miscellaneous Tasks
+
+- Allow unused imports to allow for cross-platform compilation.
+
 ## Version 0.7.0 - 2024-12-05
 
 ### Miscellaneous Tasks
