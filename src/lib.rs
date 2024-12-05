@@ -1,3 +1,4 @@
+#[allow(unused_imports)]
 use bevy::{
     app::{AppExit, TerminalCtrlCHandlerPlugin},
     prelude::*,
