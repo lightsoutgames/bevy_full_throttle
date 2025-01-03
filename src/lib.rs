@@ -1,10 +1,5 @@
-use bevy::app::ctrlc;
 #[allow(unused_imports)]
-use bevy::{
-    app::{AppExit, TerminalCtrlCHandlerPlugin},
-    prelude::*,
-    window::WindowFocused,
-};
+use bevy::{app::AppExit, prelude::*, window::WindowFocused};
 #[cfg(windows)]
 use windows::{
     core::GUID,
@@ -30,13 +25,6 @@ fn setup(mut commands: Commands) {
         if let Some(active) = active.as_ref() {
             let scheme = DefaultScheme(*active);
             commands.insert_resource(scheme);
-            ctrlc::set_handler(move || {
-                Power::PowerSetActiveScheme(None, Some(active))
-                    .ok()
-                    .expect("Failed to set power scheme");
-                TerminalCtrlCHandlerPlugin::gracefully_exit();
-            })
-            .expect("Failed to set exit handler");
         }
     }
     #[cfg(not(windows))]
