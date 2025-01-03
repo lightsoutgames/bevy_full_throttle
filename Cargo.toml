@@ -12,7 +12,6 @@ edition = "2021"
 bevy = { version = "0.15", default-features = false, features = [
     "bevy_window",
 ] }
-ctrlc = "3"
 
 [target.'cfg(windows)'.dependencies]
 windows = { version = "0.58", features = [
