@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.7.4 - 2025-01-03
+
+### Bug Fixes
+
+- No need for *any* ctrl-c handling since Bevy already does the right thing.
+
 ## Version 0.7.3 - 2025-01-03
 
 ### Bug Fixes
