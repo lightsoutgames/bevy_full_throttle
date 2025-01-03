@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.7.2 - 2025-01-03
+
+### Bug Fixes
+
+- Actually integrate Bevy 0.15's handling for `ctrlc`.
+
 ## Version 0.7.1 - 2024-12-05
 
 ### Miscellaneous Tasks
