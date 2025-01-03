@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.7.3 - 2025-01-03
+
+### Bug Fixes
+
+- Don't explicitly add ctrl-c-handling plugin as it is likely included in related groups.
+
 ## Version 0.7.2 - 2025-01-03
 
 ### Bug Fixes
